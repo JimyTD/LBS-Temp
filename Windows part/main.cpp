@@ -7,6 +7,8 @@
 #include <tchar.h>
 #include <windows.h>
 #include<commctrl.h>
+#include<iostream>
+using namespace std;
 #include"externFunc.h"
 #include"Barage.h"
 #include"BUnit.h"
@@ -16,7 +18,10 @@
 #define LWA_ALPHA 0x00000002
 #define WIDTH 1024
 #define HEIGHT 768
+#define IDT_TIMER1 456
 ////////////
+int test=0;
+/////
 
 
 
@@ -25,6 +30,7 @@ LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
 
 /*  Make the class name into a global variable  */
 TCHAR szClassName[ ] = _T("CodeBlocksWindowsApp");
+Barage bar;
 
 int WINAPI WinMain (HINSTANCE hThisInstance,
                      HINSTANCE hPrevInstance,
@@ -73,10 +79,13 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
            );
 
     /////////INITIALIZE....
+    SetWindowPos(hwnd,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE);
     SetWindowLong(hwnd,GWL_EXSTYLE,GetWindowLong(hwnd,GWL_EXSTYLE)|WS_EX_LAYERED);
     SetLayeredWindowAttributes(hwnd, RGB(255,255,255),255,LWA_ALPHA|LWA_COLORKEY);
-    Barage bar;
+    bar.setWnd(hwnd);
+    bar.InitTimer();
     srand(GetTickCount());
+
 
     //////////
 
@@ -117,14 +126,25 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 HDC hdc=BeginPaint(hwnd,&ps);
                 SetMap(hwnd,hdc,WIDTH,HEIGHT);
                 SetBkMode(hdc,TRANSPARENT);
-                TextOut(hdc,800,600,"lovelovelovelovelove",strlen("lovelovelovelovelove"));//////////////
+                TextOut(hdc,800,test,"lovelovelovelovelove",strlen("lovelovelovelovelove"));//////////////
+                bar.draw(hdc);
                 EndPaint(hwnd,&ps);
                 break;
             }
         case WM_CHAR:
             {
                 exit(1);
+                KillTimer(hwnd,IDT_TIMER1);
                 break;
+            }
+        case WM_TIMER:
+            {
+                bar.GetBarageT();
+                bar.move();
+                test++;
+                InvalidateRect(hwnd,NULL,1);
+                break;
+
             }
        /* case WM_ERASEBKGND:
             break;*/

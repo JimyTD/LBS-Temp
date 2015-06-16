@@ -2,6 +2,7 @@
 #define WIDTH 1024
 #define HEIGHT 768
 #include<string>
+#include<iostream>
 using namespace std;
 BUnit::BUnit(int Size,char* Words,COLORREF Color,int Speed)
 {
@@ -11,7 +12,7 @@ BUnit::BUnit(int Size,char* Words,COLORREF Color,int Speed)
     speed=Speed;
     left=WIDTH;
     int a=rand();
-    top=a%HEIGHT-100;
+    top=600;//a%HEIGHT-100;
 }
 
 BUnit::~BUnit()

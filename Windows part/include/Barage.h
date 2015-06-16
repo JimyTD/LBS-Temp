@@ -10,16 +10,30 @@ class Barage
         Barage();
         virtual ~Barage();
         void GetBarage();
-        BUnit GetBarageT();
+        void GetBarageT();
         void InsertBarage(BUnit nBarage);
         void DeleteBarage(vector<BUnit>::iterator pos);
         void Clear();
         void Compress();
         void Move();
+        void InitTimer();
+        void SetGap(int nGap)
+        {
+            gap=nGap;
+        }
+        void move();
+        void setWnd(HWND hwnd)
+        {
+            this->hwnd=hwnd;
+        }
 
+        void draw(HDC hdc);
     protected:
     private:
         vector<BUnit> vec;
+        vector<BUnit>::iterator it;
+        HWND hwnd;
+        int gap;
 
 
 };
