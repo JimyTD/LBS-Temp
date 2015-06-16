@@ -1,13 +1,16 @@
+
 #include "Barage.h"
 #include"BUnit.h"
-#include<windows.h>
+
 #include<iostream>
 #include<vector>
+#include"externFunc.h"
+using namespace std;
 
 #define WIDTH 1024
 #define HEIGHT 768
 #define IDT_TIMER1 456
-using namespace std;
+
 
 Barage::Barage()
 {
@@ -55,6 +58,7 @@ void Barage::InitTimer()
 
 void Barage::move()
 {
+     cout<<1;
     if(vec.empty())return;
     for(it = vec.begin() ; it != vec.end() ; ++it)
     {
@@ -64,14 +68,22 @@ void Barage::move()
 
 }
 
-void Barage::draw(HDC hdc)
+void Barage::draw(HDC hdc,HWND hwnd)
 {
+   // HDC dc=CreateCompatibleDC(hdc);
+   // HBITMAP hBmp=CreateCompatibleBitmap(hdc,WIDTH,HEIGHT);
+   // HGDIOBJ hOld=SelectObject(dc,hBmp);
+	//Instance=hInstance;
     if(vec.empty())return;
     for(it = vec.begin() ; it != vec.end() ; ++it)
     {
-        cout<<it->words.data();
+        //cout<<1;
+        LPTDFONT pFont;
+        pFont=ChangeFontTd(hdc,40);
         TextOut(hdc,it->left,it->top,it->words.data(),it->words.size());
+        DeleteFontTd(hdc,pFont);
 
     }
+   // BitBlt(hdc,0,0,WIDTH,HEIGHT,dc,0,0,PATPAINT);
 
 }

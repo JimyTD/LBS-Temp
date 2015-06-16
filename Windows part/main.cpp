@@ -4,16 +4,17 @@
     #define UNICODE
 #endif
 ///////////////////////////////
-#include <tchar.h>
 #include <windows.h>
+#include"externFunc.h"
+#include <tchar.h>
 #include<commctrl.h>
 #include<iostream>
-using namespace std;
-#include"externFunc.h"
+
+
 #include"Barage.h"
 #include"BUnit.h"
 //////////////////////////////
-
+using namespace std;
 #define LWA_COLORKEY 0x00000001
 #define LWA_ALPHA 0x00000002
 #define WIDTH 1024
@@ -122,13 +123,14 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
 
         case WM_PAINT:
             {
+
                 PAINTSTRUCT ps;
                 HDC hdc=BeginPaint(hwnd,&ps);
                 SetMap(hwnd,hdc,WIDTH,HEIGHT);
                 SetBkMode(hdc,TRANSPARENT);
-                TextOut(hdc,800,test,"lovelovelovelovelove",strlen("lovelovelovelovelove"));//////////////
-                bar.draw(hdc);
+                bar.draw(hdc,hwnd);
                 EndPaint(hwnd,&ps);
+
                 break;
             }
         case WM_CHAR:
@@ -142,12 +144,16 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 bar.GetBarageT();
                 bar.move();
                 test++;
+                //PostMessage(hwnd,WM_PAINT,0,0);
                 InvalidateRect(hwnd,NULL,1);
                 break;
 
             }
-       /* case WM_ERASEBKGND:
-            break;*/
+      /*  case WM_ERASEBKGND:
+            {
+               break;
+            }*/
+
         default:                      /* for messages that we don't deal with */
             return DefWindowProc (hwnd, message, wParam, lParam);
     }

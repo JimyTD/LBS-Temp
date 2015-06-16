@@ -1,6 +1,7 @@
 #ifndef BARAGE_H
 #define BARAGE_H
 #include"BUnit.h"
+
 #include<string>
 #include<vector>
 using namespace std;
@@ -27,7 +28,7 @@ class Barage
             this->hwnd=hwnd;
         }
 
-        void draw(HDC hdc);
+        void draw(HDC hdc,HWND hwnd);
     protected:
     private:
         vector<BUnit> vec;

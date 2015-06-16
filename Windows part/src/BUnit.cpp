@@ -12,7 +12,7 @@ BUnit::BUnit(int Size,char* Words,COLORREF Color,int Speed)
     speed=Speed;
     left=WIDTH;
     int a=rand();
-    top=600;//a%HEIGHT-100;
+    top=a%HEIGHT-100;
 }
 
 BUnit::~BUnit()
