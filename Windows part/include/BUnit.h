@@ -2,6 +2,8 @@
 #define BUNIT_H
 #include<string>
 #include<windows.h>
+#include<iostream>
+#include"externFunc.h"
 ///////
 #define POS_DOWN 758
 #define POS_UP 714
@@ -13,6 +15,10 @@ class BUnit
 {
     public:
         BUnit(int Size,char* Words,COLORREF Color,int Speed);
+        int CalculateLength()
+        {
+            return (int)(words.length()*PoundToPixel(nSize));
+        }
         virtual ~BUnit();
         int nSize;
         string words;
@@ -22,7 +28,7 @@ class BUnit
         int left;
         int top;
         int speed;
-
+        int nLength;
     protected:
     private:
 };

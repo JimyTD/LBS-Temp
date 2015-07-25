@@ -4,6 +4,7 @@
 
 #include<iostream>
 #include<vector>
+#include<wingdi.h>
 #include"externFunc.h"
 using namespace std;
 
@@ -35,7 +36,7 @@ void Barage::DeleteBarage(vector<BUnit>::iterator pos)
 
 void Barage::GetBarageT()
 {
-    BUnit *nBar=new BUnit(10,"sdasdsadas",RGB(66,87,52),10);
+    BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),10);
     InsertBarage(*nBar);
 
 
@@ -58,11 +59,13 @@ void Barage::InitTimer()
 
 void Barage::move()
 {
-     cout<<1;
     if(vec.empty())return;
     for(it = vec.begin() ; it != vec.end() ; ++it)
     {
         it->left-=it->speed;
+        //cout<<it->nLength;
+        if(it->left<-(it->nLength))
+            DeleteBarage(it);
     }
 
 
@@ -70,20 +73,24 @@ void Barage::move()
 
 void Barage::draw(HDC hdc,HWND hwnd)
 {
-   // HDC dc=CreateCompatibleDC(hdc);
-   // HBITMAP hBmp=CreateCompatibleBitmap(hdc,WIDTH,HEIGHT);
-   // HGDIOBJ hOld=SelectObject(dc,hBmp);
+    HDC dc=CreateCompatibleDC(hdc);
+    HBITMAP hBmp=CreateCompatibleBitmap(hdc,WIDTH,HEIGHT);
+    HGDIOBJ hOld=SelectObject(dc,hBmp);
+    SetTextColor(dc,RGB(210,45,78));
+    SetBkMode(dc,TRANSPARENT);
 	//Instance=hInstance;
     if(vec.empty())return;
     for(it = vec.begin() ; it != vec.end() ; ++it)
     {
-        //cout<<1;
         LPTDFONT pFont;
-        pFont=ChangeFontTd(hdc,40);
-        TextOut(hdc,it->left,it->top,it->words.data(),it->words.size());
-        DeleteFontTd(hdc,pFont);
+        pFont=ChangeFontTd(dc,40);
+        TextOut(dc,it->left,it->top,it->words.data(),it->words.size());
+        DeleteFontTd(dc,pFont);
 
     }
-   // BitBlt(hdc,0,0,WIDTH,HEIGHT,dc,0,0,PATPAINT);
+    BitBlt(hdc,0,0,WIDTH,HEIGHT,dc,0,0,SRCCOPY);
+    SelectObject(dc,hOld);
+    DeleteObject(hBmp);
+    ReleaseDC(hwnd,dc);
 
 }

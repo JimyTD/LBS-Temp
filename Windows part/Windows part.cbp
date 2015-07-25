@@ -43,6 +43,7 @@
 		<Unit filename="include/BUnit.h" />
 		<Unit filename="include/Barage.h" />
 		<Unit filename="include/externFunc.h" />
+		<Unit filename="include/font.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BUnit.cpp" />
 		<Unit filename="src/Barage.cpp" />

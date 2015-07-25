@@ -11,7 +11,7 @@ class Barage
         Barage();
         virtual ~Barage();
         void GetBarage();
-        void GetBarageT();
+        void GetBarageT();///temp function
         void InsertBarage(BUnit nBarage);
         void DeleteBarage(vector<BUnit>::iterator pos);
         void Clear();

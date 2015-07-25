@@ -82,7 +82,7 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     /////////INITIALIZE....
     SetWindowPos(hwnd,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE);
     SetWindowLong(hwnd,GWL_EXSTYLE,GetWindowLong(hwnd,GWL_EXSTYLE)|WS_EX_LAYERED);
-    SetLayeredWindowAttributes(hwnd, RGB(255,255,255),255,LWA_ALPHA|LWA_COLORKEY);
+    SetLayeredWindowAttributes(hwnd, RGB(0,0,0),255,LWA_ALPHA|LWA_COLORKEY);
     bar.setWnd(hwnd);
     bar.InitTimer();
     srand(GetTickCount());
@@ -135,6 +135,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             }
         case WM_CHAR:
             {
+                bar.Clear();
                 exit(1);
                 KillTimer(hwnd,IDT_TIMER1);
                 break;
@@ -149,10 +150,10 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 break;
 
             }
-      /*  case WM_ERASEBKGND:
+        case WM_ERASEBKGND:
             {
                break;
-            }*/
+            }
 
         default:                      /* for messages that we don't deal with */
             return DefWindowProc (hwnd, message, wParam, lParam);

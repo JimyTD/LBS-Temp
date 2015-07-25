@@ -25,6 +25,11 @@ static BOOL SetLayeredWindowAttributes(HWND hwnd,COLORREF crKey,BYTE bAlpha,DWOR
     FreeLibrary(hmod);
     return bReturn;
 }
+////////////////////SetLayeredWindow//////////////////////////
+
+
+
+
 
 typedef struct TDFONT
 {
@@ -53,5 +58,13 @@ static int DeleteFontTd(HDC hdc,LPTDFONT pFont)
 	delete pFont;
 	return 0;
 }
+/////////////////////////////////////////Font Change//////////////////////////
 
+
+
+
+static float PoundToPixel(float pound)
+{
+    return pound*96/72;
+}
 #endif // EXTERNFUNC_H_INCLUDED

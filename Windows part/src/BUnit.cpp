@@ -13,6 +13,8 @@ BUnit::BUnit(int Size,char* Words,COLORREF Color,int Speed)
     left=WIDTH;
     int a=rand();
     top=a%HEIGHT-100;
+    nLength=CalculateLength()+50;//提前给予一定缓冲空间
+
 }
 
 BUnit::~BUnit()

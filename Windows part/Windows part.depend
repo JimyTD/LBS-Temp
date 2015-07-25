@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1434462621 source:d:\programsoftd\lbsapp\windows part\windows part\main.cpp
+1437794416 source:d:\programsoftd\lbsapp\windows part\windows part\main.cpp
 	<windows.h>
 	"externFunc.h"
 	<tchar.h>
@@ -8,26 +8,29 @@
 	"Barage.h"
 	"BUnit.h"
 
-1434462654 source:d:\programsoftd\lbsapp\windows part\windows part\src\barage.cpp
+1437797098 source:d:\programsoftd\lbsapp\windows part\windows part\src\barage.cpp
 	"Barage.h"
 	"BUnit.h"
 	<iostream>
 	<vector>
+	<wingdi.h>
 	"externFunc.h"
 
-1434460555 d:\programsoftd\lbsapp\windows part\windows part\include\barage.h
+1437707546 d:\programsoftd\lbsapp\windows part\windows part\include\barage.h
 	"BUnit.h"
 	<string>
 	<vector>
 
-1434459033 source:d:\programsoftd\lbsapp\windows part\windows part\src\bunit.cpp
+1437797266 source:d:\programsoftd\lbsapp\windows part\windows part\src\bunit.cpp
 	"BUnit.h"
 	<string>
 	<iostream>
 
-1434283062 d:\programsoftd\lbsapp\windows part\windows part\include\bunit.h
+1437796766 d:\programsoftd\lbsapp\windows part\windows part\include\bunit.h
 	<string>
 	<windows.h>
+	<iostream>
+	"externFunc.h"
 
-1434458770 d:\programsoftd\lbsapp\windows part\windows part\include\externfunc.h
+1437796766 d:\programsoftd\lbsapp\windows part\windows part\include\externfunc.h
 
