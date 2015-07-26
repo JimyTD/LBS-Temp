@@ -12,13 +12,14 @@ using namespace std;
 #define HEIGHT 768
 #define IDT_TIMER1 456
 #define LINES 16
+#define STAYTIME 3000
 
 
 
 Barage::Barage()
 {
 
-    gap=10;
+    gap=20;
     for(int i=0;i<=15;i++)
    {
         LineInformation[i]=0;
@@ -48,11 +49,12 @@ void Barage::GetBarageT()
         if(LineInformation[i]==0)
         {
             Compress();
-            BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),10);
+            BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52));
+            nBar->speed=(WIDTH+nBar->nLength)/(STAYTIME/gap)+1;///+1也慢。。由于帧速达不到
             nBar->line=i;
             InsertBarage(*nBar,vec.begin()+vec.capacity());
             LineInformation[i]=0;
-            break;
+            break;///////////////////////////是否要DELETE待定
 
         }
     }

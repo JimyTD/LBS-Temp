@@ -2,18 +2,18 @@
 #define WIDTH 1024
 #define HEIGHT 768
 #define LINES 16
+#define STAYTIME 3000
 #include<string>
 #include<iostream>
 using namespace std;
-BUnit::BUnit(int Size,char* Words,COLORREF Color,int Speed)
+BUnit::BUnit(int Size,char* Words,COLORREF Color)
 {
     nSize=Size;
     words=Words;
     color=Color;
-    speed=Speed;
+    //speed=;
     left=WIDTH;
     int a=rand();
-    //line=a%16;
     nLength=CalculateLength()+100;//提前给予一定缓冲空间
     IsPass=0;
 }

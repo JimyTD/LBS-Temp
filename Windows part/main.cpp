@@ -146,7 +146,6 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
                 bar.GetBarageT();
                 bar.move();
                 //test++;
-                //PostMessage(hwnd,WM_PAINT,0,0);
                 InvalidateRect(hwnd,NULL,1);
                 break;
 

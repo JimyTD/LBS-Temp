@@ -15,7 +15,7 @@ using namespace std;
 class BUnit
 {
     public:
-        BUnit(int Size,char* Words,COLORREF Color,int Speed);
+        BUnit(int Size,char* Words,COLORREF Color);
         int CalculateLength()
         {
             return (int)(words.length()*PoundToPixel(nSize));
