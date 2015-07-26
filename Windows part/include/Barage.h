@@ -5,6 +5,11 @@
 #include<string>
 #include<vector>
 using namespace std;
+////////////////////
+
+
+
+
 class Barage
 {
     public:
@@ -12,8 +17,8 @@ class Barage
         virtual ~Barage();
         void GetBarage();
         void GetBarageT();///temp function
-        void InsertBarage(BUnit nBarage);
-        void DeleteBarage(vector<BUnit>::iterator pos);
+        vector<BUnit>::iterator InsertBarage(BUnit nBarage,vector<BUnit>::iterator pos);
+        vector<BUnit>::iterator DeleteBarage(vector<BUnit>::iterator pos);
         void Clear();
         void Compress();
         void Move();
@@ -35,6 +40,8 @@ class Barage
         vector<BUnit>::iterator it;
         HWND hwnd;
         int gap;
+        vector<BUnit>::iterator LineInformation[16];
+
 
 
 };

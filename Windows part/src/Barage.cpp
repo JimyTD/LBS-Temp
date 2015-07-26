@@ -11,12 +11,17 @@ using namespace std;
 #define WIDTH 1024
 #define HEIGHT 768
 #define IDT_TIMER1 456
+#define LINES 16
 
 
 Barage::Barage()
 {
 
     gap=10;
+   // for(int i=0;i<=15;i++)
+  // {
+   //     LineInformation[i]=NULL;
+   // }
 }
 
 Barage::~Barage()
@@ -29,21 +34,31 @@ void Barage::Clear()
     vec.clear();
 }
 
-void Barage::DeleteBarage(vector<BUnit>::iterator pos)
+vector<BUnit>::iterator Barage::DeleteBarage(vector<BUnit>::iterator pos)
 {
-    vec.erase(pos);
+    pos=vec.erase(pos);
+    return pos;
 }
 
 void Barage::GetBarageT()
 {
-    BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),10);
-    InsertBarage(*nBar);
+    for(int i=0;i<=15;i++)
+    {
+        if(LineInformation[i]->IsPass==1)
+        {
+            Compress();
+            BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),10);
+            LineInformation[i]=InsertBarage(*nBar,vec.begin()+vec.capacity());
+            break;
+
+        }
+    }
 
 
 }
-void Barage::InsertBarage(BUnit nBarage)
+vector<BUnit>::iterator Barage::InsertBarage(BUnit nBarage,vector<BUnit>::iterator pos)
 {
-    vec.push_back(nBarage);
+    return vec.insert(pos,nBarage);
 }
 
 void Barage::Compress()
@@ -59,13 +74,25 @@ void Barage::InitTimer()
 
 void Barage::move()
 {
+    Compress();
     if(vec.empty())return;
+    it = vec.begin() ;
     for(it = vec.begin() ; it != vec.end() ; ++it)
     {
         it->left-=it->speed;
         //cout<<it->nLength;
-        if(it->left<-(it->nLength))
-            DeleteBarage(it);
+        if(it->left<(-(it->nLength)))///出左界.
+            {
+
+                 cout<<vec.capacity();
+                 it=DeleteBarage(it);
+                 if(it==vec.end())
+                   return;
+            }
+        if(it->left<WIDTH-it->nLength)///出有界
+        {
+            it->IsPass=1;
+        }
     }
 
 
@@ -84,7 +111,7 @@ void Barage::draw(HDC hdc,HWND hwnd)
     {
         LPTDFONT pFont;
         pFont=ChangeFontTd(dc,40);
-        TextOut(dc,it->left,it->top,it->words.data(),it->words.size());
+        TextOut(dc,it->left,it->line*HEIGHT/LINES,it->words.data(),it->words.size());
         DeleteFontTd(dc,pFont);
 
     }

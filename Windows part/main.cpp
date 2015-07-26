@@ -20,6 +20,7 @@ using namespace std;
 #define WIDTH 1024
 #define HEIGHT 768
 #define IDT_TIMER1 456
+#define LINES 16
 ////////////
 int test=0;
 /////
@@ -144,7 +145,7 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
             {
                 bar.GetBarageT();
                 bar.move();
-                test++;
+                //test++;
                 //PostMessage(hwnd,WM_PAINT,0,0);
                 InvalidateRect(hwnd,NULL,1);
                 break;

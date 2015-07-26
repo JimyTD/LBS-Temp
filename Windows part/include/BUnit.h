@@ -8,6 +8,7 @@
 #define POS_DOWN 758
 #define POS_UP 714
 #define POS_SPECIAL 452
+#define LINES 16
 ///////
 using namespace std;
 
@@ -26,9 +27,11 @@ class BUnit
         int position;
         //CFont font;
         int left;
-        int top;
+        int line;
         int speed;
         int nLength;
+        int IsPass;
+
     protected:
     private:
 };
