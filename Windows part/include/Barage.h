@@ -40,7 +40,7 @@ class Barage
         vector<BUnit>::iterator it;
         HWND hwnd;
         int gap;
-        vector<BUnit>::iterator LineInformation[16];
+        int LineInformation[16];
 
 
 

@@ -14,14 +14,15 @@ using namespace std;
 #define LINES 16
 
 
+
 Barage::Barage()
 {
 
     gap=10;
-   // for(int i=0;i<=15;i++)
-  // {
-   //     LineInformation[i]=NULL;
-   // }
+    for(int i=0;i<=15;i++)
+   {
+        LineInformation[i]=0;
+    }
 }
 
 Barage::~Barage()
@@ -44,11 +45,13 @@ void Barage::GetBarageT()
 {
     for(int i=0;i<=15;i++)
     {
-        if(LineInformation[i]->IsPass==1)
+        if(LineInformation[i]==0)
         {
             Compress();
             BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),10);
-            LineInformation[i]=InsertBarage(*nBar,vec.begin()+vec.capacity());
+            nBar->line=i;
+            InsertBarage(*nBar,vec.begin()+vec.capacity());
+            LineInformation[i]=0;
             break;
 
         }
@@ -74,7 +77,7 @@ void Barage::InitTimer()
 
 void Barage::move()
 {
-    Compress();
+    memset(LineInformation,0,sizeof(LineInformation));
     if(vec.empty())return;
     it = vec.begin() ;
     for(it = vec.begin() ; it != vec.end() ; ++it)
@@ -92,6 +95,10 @@ void Barage::move()
         if(it->left<WIDTH-it->nLength)///³öÓÐ½ç
         {
             it->IsPass=1;
+        }
+        else
+        {
+            LineInformation[it->line]=1;
         }
     }
 

@@ -13,8 +13,8 @@ BUnit::BUnit(int Size,char* Words,COLORREF Color,int Speed)
     speed=Speed;
     left=WIDTH;
     int a=rand();
-    line=a%16;
-    nLength=CalculateLength()+50;//提前给予一定缓冲空间
+    //line=a%16;
+    nLength=CalculateLength()+100;//提前给予一定缓冲空间
     IsPass=0;
 }
 
