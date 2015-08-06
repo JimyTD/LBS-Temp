@@ -12,7 +12,10 @@ using namespace std;
 #define HEIGHT 768
 #define IDT_TIMER1 456
 #define LINES 16
-#define STAYTIME 3000
+#define STAYTIME 2000
+#define POS_ROLL 758
+#define POS_UP 714
+#define POS_DOWN 452
 
 
 
@@ -21,8 +24,12 @@ Barage::Barage()
 
     gap=20;
     for(int i=0;i<=15;i++)
-   {
-        LineInformation[i]=0;
+    {
+        RollLineInformation[i]=0;
+    }
+    for(int i=0;i<=15;i++)
+    {
+        StaticLineInformation[i]=0;
     }
 }
 
@@ -44,22 +51,46 @@ vector<BUnit>::iterator Barage::DeleteBarage(vector<BUnit>::iterator pos)
 
 void Barage::GetBarageT()
 {
-    for(int i=0;i<=15;i++)
-    {
-        if(LineInformation[i]==0)
+    int temp=rand()%3;
+    if(temp==0)//roll
+        for(int i=0;i<=15;i++)
         {
-            Compress();
-            BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52));
-            nBar->speed=(WIDTH+nBar->nLength)/(STAYTIME/gap)+1;///+1也慢。。由于帧速达不到
-            nBar->line=i;
-            InsertBarage(*nBar,vec.begin()+vec.capacity());
-            LineInformation[i]=0;
-            break;///////////////////////////是否要DELETE待定
+            if(RollLineInformation[i]==0)
+            {
+                Compress();
+                BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),POS_ROLL,gap);
+                nBar->line=i;
+                InsertBarage(*nBar,vec.begin()+vec.capacity());
+                break;///////////////////////////是否要DELETE待定
 
+            }
         }
-    }
+    if(temp==1)//up
+        for(int i=0;i<=7;i++)
+        {
+            if(StaticLineInformation[i]==0)
+            {
+                Compress();
+                BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),POS_UP,gap);
+                nBar->line=i;
+                InsertBarage(*nBar,vec.begin()+vec.capacity());
+                break;///////////////////////////是否要DELETE待定
 
+            }
+        }
+    if(temp==2)//down
+        for(int i=15;i>=8;i--)
+        {
+            if(StaticLineInformation[i]==0)
+            {
+                Compress();
+                BUnit *nBar=new BUnit(10,"123456789",RGB(66,87,52),POS_DOWN,gap);
+                nBar->line=i;
+                InsertBarage(*nBar,vec.begin()+vec.capacity());
+                break;///////////////////////////是否要DELETE待定
 
+            }
+        }
 }
 vector<BUnit>::iterator Barage::InsertBarage(BUnit nBarage,vector<BUnit>::iterator pos)
 {
@@ -68,7 +99,7 @@ vector<BUnit>::iterator Barage::InsertBarage(BUnit nBarage,vector<BUnit>::iterat
 
 void Barage::Compress()
 {
-    vector<BUnit>(vec).swap(vec);
+    vector<BUnit>(vec).swap(vec);//压缩空间。
 }
 
 
@@ -79,29 +110,50 @@ void Barage::InitTimer()
 
 void Barage::move()
 {
-    memset(LineInformation,0,sizeof(LineInformation));
+    memset(RollLineInformation,0,sizeof(RollLineInformation));
+    memset(StaticLineInformation,0,sizeof(RollLineInformation));
     if(vec.empty())return;
     it = vec.begin() ;
     for(it = vec.begin() ; it != vec.end() ; ++it)
     {
-        it->left-=it->speed;
-        //cout<<it->nLength;
-        if(it->left<(-(it->nLength)))///出左界.
-            {
+        if(it->position==POS_ROLL)
+        {
+            it->left-=it->speed;
+            //cout<<it->nLength;
+            if(it->left<(-(it->nLength)))///出左界.
+                {
 
-                 cout<<vec.capacity();
-                 it=DeleteBarage(it);
-                 if(it==vec.end())
-                   return;
+                     cout<<vec.capacity();///test
+                     it=DeleteBarage(it);
+                     if(it==vec.end())
+                       return;
+                }
+            if(it->left<WIDTH-it->nLength)///出右界
+            {
+                it->IsPass=1;
             }
-        if(it->left<WIDTH-it->nLength)///出有界
-        {
-            it->IsPass=1;
+            else
+            {
+                RollLineInformation[it->line]=1;
+            }
         }
-        else
+
+
+        if(it->position==POS_DOWN||it->position==POS_UP)
         {
-            LineInformation[it->line]=1;
+            it->showTime-=gap;
+            if(it->showTime<=0)
+            {
+                it=DeleteBarage(it);
+                if(it==vec.end())
+                    return;
+            }
+            else
+            {
+                StaticLineInformation[it->line]=1;
+            }
         }
+
     }
 
 

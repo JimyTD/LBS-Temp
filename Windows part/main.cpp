@@ -137,8 +137,8 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
         case WM_CHAR:
             {
                 bar.Clear();
-                exit(1);
                 KillTimer(hwnd,IDT_TIMER1);
+                exit(1);
                 break;
             }
         case WM_TIMER:

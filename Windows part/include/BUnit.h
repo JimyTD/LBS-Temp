@@ -5,17 +5,18 @@
 #include<iostream>
 #include"externFunc.h"
 ///////
-#define POS_DOWN 758
+#define POS_ROLL 758
 #define POS_UP 714
-#define POS_SPECIAL 452
+#define POS_DOWN 452
 #define LINES 16
+#define STAYTIME 2000
 ///////
 using namespace std;
 
 class BUnit
 {
     public:
-        BUnit(int Size,char* Words,COLORREF Color);
+        BUnit(int Size,char* Words,COLORREF Color,int Position,int gap);
         int CalculateLength()
         {
             return (int)(words.length()*PoundToPixel(nSize));
@@ -31,6 +32,7 @@ class BUnit
         int speed;
         int nLength;
         int IsPass;
+        int showTime;
 
     protected:
     private:
