@@ -1,0 +1,26 @@
+﻿生成启动时间为 2015/8/19 11:56:28。
+     1>项目“C:\Users\Administrator\Desktop\lbswinpart\new\new\new.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Debug\new.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         D:\VS2010\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\main.cpp
+         main.cpp
+     1>c:\users\administrator\desktop\lbswinpart\new\bunit.h(22): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+       ResourceCompile:
+         所有输出均为最新。
+       Link:
+         D:\VS2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Desktop\lbswinpart\new\Debug\new.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\new.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Administrator\Desktop\lbswinpart\new\Debug\new.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Desktop\lbswinpart\new\Debug\new.lib" /MACHINE:X86 Debug\resource.res
+         Debug\Barage.obj
+         Debug\BUnit.obj
+         Debug\main.obj
+         new.vcxproj -> C:\Users\Administrator\Desktop\lbswinpart\new\Debug\new.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"C:\Users\Administrator\Desktop\lbswinpart\new\Debug\new.exe.manifest" /manifest Debug\new.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“Debug\new.unsuccessfulbuild”。
+         正在对“Debug\new.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“C:\Users\Administrator\Desktop\lbswinpart\new\new\new.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.17
